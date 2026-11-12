@@ -486,8 +486,10 @@ def render(plan: dict) -> str:
 
     heading("LEGEND")
     s.append(f'<rect x="{left}" y="{ty - 9}" width="22" height="10" fill="url(#hatch)" stroke="{INK}" stroke-width="0.8"/>')
-    s.append(text(left + 28, ty, f'Wall {ftin(wall_t)} brick', 8.5, INK, "start"))
-    s.append(text(left + 120, ty, "D = door  W = window  V = ventilator  O = open entry  FT = floor trap  IWC/EWC = Indian/western WC", 8.5, INK, "start"))
+    ext_t = plan.get("external_wall_thickness")
+    wall_lbl = f'Walls: ext {ftin(ext_t)}, int {ftin(wall_t)}' if ext_t else f'Wall {ftin(wall_t)} brick'
+    s.append(text(left + 28, ty, wall_lbl, 8.5, INK, "start"))
+    s.append(text(left + 150 if ext_t else left + 120, ty, "D = door  W = window  V = ventilator  O = open entry  FT = floor trap  IWC/EWC = Indian/western WC", 8.5, INK, "start"))
     ty += 18
     s.append(f'<rect x="{left + 6}" y="{ty - 9}" width="10" height="10" fill="#3a3a3a" stroke="{INK}" stroke-width="0.8"/>')
     s.append(text(left + 28, ty, 'RCC pillar', 8.5, INK, "start"))

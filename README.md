@@ -4,7 +4,7 @@ Builder-ready 2D floor plans for the house, kept as editable JSON and rendered t
 
 - Plot: **26'-0" wide × 82'-0" deep** (2,132 sq ft), **East-facing** (road on the East)
 - Floors: **Ground Floor**, **First Floor** (Hall + Bedroom as one space, gallery over Padavi, cement-sheet roof over the rear)
-- Construction: load-bearing 9" brick walls, external and internal
+- Construction: load-bearing brick walls, external 11" (to carry the first floor), internal 9"
 
 ## Files
 
@@ -44,13 +44,14 @@ Wall layout on the ground floor:
 
 | Line | Position |
 |------|----------|
-| External walls | 9", outside face is the building outline |
+| External walls | 11" (0.9167), outside face is the building outline; the extra 2" over 9" is taken from the rooms |
 | Internal walls | 9", centred on the original room lines (each room gave up 4½") |
-| Padavi / Hall-Bedroom wall | y 39.375 – 40.125 |
-| Hall / Bedroom wall | x 14.75 – 15.5 (Hall 11'-0", Bedroom 8'-9") |
+| Openings in external walls | set `"thickness": 0.9167` and place them on the 11" wall centre line (outline ± 0.4583) |
+| Padavi / Hall-Bedroom wall (external) | y 39.375 – 40.2917 |
+| Hall / Bedroom wall | x 14.75 – 15.5 (Hall 10'-10", Bedroom 8'-7") |
 | Hall-Bedroom / Kitchen wall | y 54.625 – 55.375 |
-| Kitchen rear wall | y 63.625 – 64.375 (external for now; the Store will be built behind it later) |
-| Kitchen / Bath-Toilet wall | y 58.25 – 59.0 (bathroom and toilet 6'-0" deep, passage 2'-10½") |
+| Kitchen rear wall | y 63.4583 – 64.375 (external for now; the Store will be built behind it later) |
+| Kitchen / Bath-Toilet wall | y 58.25 – 59.0 (bathroom and toilet 5'-10" deep, passage 2'-10½") |
 
 ## Plan format
 
@@ -61,7 +62,8 @@ Wall layout on the ground floor:
 | `name`, `subtitle` | Sheet title and the line under it |
 | `plot` | `{ "width": 26, "depth": 82 }` |
 | `front_side` | Compass direction the road side faces (`east`). Sets the north arrow and the side labels: bottom = East, top = West, right = North, left = South |
-| `wall_thickness` | Default wall thickness in feet (0.75 = 9") |
+| `wall_thickness` | Default (internal) wall thickness in feet (0.75 = 9") |
+| `external_wall_thickness` | External wall thickness (0.9167 = 11"), shown in the legend |
 | `visible` | `false` hides the floor in the viewer (it is still rendered to its SVG) |
 
 ### `building.outline`
@@ -178,16 +180,16 @@ A list of strings, printed as numbered notes on the sheet.
 
 ## Ground floor decisions
 
-- Inside walls are 9", taken out of the rooms.
-- Overall house width is **22'-0"** outside the walls (x 3.0 – 25.0): left gap 3'-0", right gap 1'-0" (the right gap is never reduced). Hall is kept at 11'-0"; the Bedroom took the reduction.
+- External walls 11" and internal walls 9", all taken out of the rooms; the building outline and plot gaps don't change.
+- Overall house width is **22'-0"** outside the walls (x 3.0 – 25.0): left gap 3'-0", right gap 1'-0" (the right gap is never reduced). With 11" outer walls the Hall is 10'-10" and the Bedroom 8'-7" (each gave up 2"); the partition stays at x 14.75 – 15.5.
 - Padavi is open with no walls, 22'-0" × 10'-0" to the slab edge: an RCC slab on 6 pillars (4 front with 6'-4" clear bays, 2 at the back corners).
 - Load-bearing masonry with RCC plinth and lintel bands; no columns.
 - Dog-legged staircase inside Padavi against the north side: 3'-0" flights, 17 risers, arriving on the first-floor gallery.
 - **Store (future phase):** removed from both floors for now. Its full definition (room, door, ventilator, shelves, outline, dimensions, roof) is saved in `plans/ground_floor.json` under `future.store`.
 - The bathroom/toilet block sticks out 1'-0" past the kitchen's back wall. There is no building behind it.
-- Full length Padavi front edge to kitchen back wall is **35'-0"** (Padavi 10'-0" + house 25'-0"); Hall and Bedroom are 14'-6" deep. The bathroom/toilet block is outside this length.
+- Full length Padavi front edge to kitchen back wall is **35'-0"** (Padavi 10'-0" + house 25'-0"); Hall and Bedroom are 14'-4" deep. The bathroom/toilet block is outside this length.
 - Windows are centred on their rooms. D1, D2 and O2 sit flush against the central Hall/Bedroom partition; the first-floor D1 is directly above the ground-floor D1.
-- Bedroom: queen bed 5'-0" × 6'-6", headboard on the front wall, centred (1'-10½" each side); wardrobe 4'-0" × 1'-6" in the rear-right corner, clear of the D2 swing.
+- Bedroom: queen bed 5'-0" × 6'-6", headboard on the front wall, centred (1'-9½" each side); wardrobe 4'-0" × 1'-6" in the rear-right corner, clear of the D2 swing.
 - Plinth +1'-6", floor-to-floor 10'-0" and lintel 7'-0" are **assumed** until the engineer confirms them.
 
 ## First floor decisions
@@ -204,4 +206,4 @@ Decide these when the first floor is planned:
 - **Staircase:** decided, inside Padavi, arriving on the gallery.
 - **Hall + Bedroom space:** one open room for now; partitions, a toilet and terrace access are still to decide.
 - **Floor heights:** confirm plinth, floor-to-floor and lintel levels with the engineer.
-- **Load-bearing walls:** first-floor walls should sit on the ground-floor 9" walls below.
+- **Load-bearing walls:** first-floor walls should sit on the ground-floor walls below (11" outer, 9" inner).
