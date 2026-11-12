@@ -46,8 +46,8 @@ Wall layout on the ground floor:
 |------|----------|
 | External walls | 9", outside face is the building outline |
 | Internal walls | 9", centred on the original room lines (each room gave up 4½") |
-| Padavi / Hall-Bedroom wall | y 39.625 – 40.375 |
-| Hall / Bedroom wall | x 13.75 – 14.5 (Hall 11'-0", Bedroom 9'-9") |
+| Padavi / Hall-Bedroom wall | y 39.375 – 40.125 |
+| Hall / Bedroom wall | x 14.75 – 15.5 (Hall 11'-0", Bedroom 8'-9") |
 | Hall-Bedroom / Kitchen wall | y 54.625 – 55.375 |
 | Kitchen rear wall | y 63.625 – 64.375 (external for now; the Store will be built behind it later) |
 | Kitchen / Bath-Toilet wall | y 58.25 – 59.0 (bathroom and toilet 6'-0" deep, passage 2'-10½") |
@@ -80,7 +80,7 @@ They are drawn with a dashed slab edge, counted as covered area (not built-up en
 Sheet roofs over single-storey parts, drawn with corrugation lines and a slope arrow.
 
 ```json
-{ "name": "Cement sheet roof", "points": [[2,55.375],[25,55.375],...], "slope": "+y",
+{ "name": "Cement sheet roof", "points": [[3,55.375],[25,55.375],...], "slope": "+y",
   "arrow_at": [8.75, 66], "label": "CEMENT ROOFING SHEETS\nover Kitchen, Bath, Toilet", "label_at": [8.75, 60.2] }
 ```
 
@@ -100,8 +100,8 @@ RCC pillars, drawn solid: `{ "x", "y", "w", "h", "note" }`. Padavi has six 9"×9
 Clear inside spaces (wall face to wall face).
 
 ```json
-{ "name": "Hall", "x": 2.75, "y": 40.375, "w": 10.5, "h": 14.25, "color": "#dce8f0" }
-{ "name": "Kitchen", "points": [[2.75,55.375],[24.25,55.375],...], "dims_text": "12'-6\" × 8'-3\" + passage" }
+{ "name": "Hall", "x": 3.75, "y": 40.375, "w": 11, "h": 14.25, "color": "#dce8f0" }
+{ "name": "Kitchen", "points": [[3.75,55.375],[24.25,55.375],...], "dims_text": "11'-6\" × 8'-3\" + passage" }
 ```
 
 - Use `x, y, w, h` for rectangles or `points` for L-shapes.
@@ -163,7 +163,7 @@ One entry per opening code. The sheet counts how many openings use each code and
 Dimension chains. Each segment between two positions is labelled in feet-inches.
 
 ```json
-{ "axis": "x", "at": 73, "pos": [2, 2.75, 15.25, 16], "from": 70.75 }
+{ "axis": "x", "at": 73, "pos": [3, 3.75, 15.25, 16], "from": 64.375 }
 ```
 
 - `axis: "x"` is a horizontal chain drawn at `y = at`. `axis: "y"` is a vertical chain drawn at `x = at`.
@@ -177,8 +177,8 @@ A list of strings, printed as numbered notes on the sheet.
 ## Ground floor decisions
 
 - Inside walls are 9", taken out of the rooms.
-- Overall house width is **23'-0"** outside the walls (x 2.0 – 25.0): left gap 2'-0", right gap 1'-0" (the right gap is never reduced).
-- Padavi is open with no walls: an RCC slab on 6 pillars (4 front with 6'-8" clear bays, 2 at the back corners).
+- Overall house width is **22'-0"** outside the walls (x 3.0 – 25.0): left gap 3'-0", right gap 1'-0" (the right gap is never reduced). Hall is kept at 11'-0"; the Bedroom took the reduction.
+- Padavi is open with no walls, 22'-0" × 10'-0" to the slab edge: an RCC slab on 6 pillars (4 front with 6'-4" clear bays, 2 at the back corners).
 - Load-bearing masonry with RCC plinth and lintel bands; no columns.
 - Dog-legged staircase inside Padavi against the north side: 3'-0" flights, 17 risers, arriving on the first-floor gallery.
 - **Store (future phase):** removed from both floors for now. Its full definition (room, door, ventilator, shelves, outline, dimensions, roof) is saved in `plans/ground_floor.json` under `future.store`.
@@ -187,8 +187,8 @@ A list of strings, printed as numbered notes on the sheet.
 
 ## First floor decisions
 
-- Same plot coordinates as the ground floor. The enclosed room sits directly over the ground-floor Hall and Bedroom (y 39.625 – 55.375).
-- Hall + Bedroom is one open space, 21'-6" × 14'-3".
+- Same plot coordinates as the ground floor. The enclosed room sits directly over the ground-floor Hall and Bedroom (y 39.375 – 55.375).
+- Hall + Bedroom is one open space, 20'-6" × 14'-6".
 - Gallery over Padavi: open, MS railing on front and sides, and the 6 pillars continue up to carry its roof (assumed).
 - Kitchen, Bathroom and Toilet stay single storey under a lean-to cement-sheet roof sloping to the rear.
 
