@@ -205,8 +205,35 @@ def render(plan: dict) -> str:
             s.append(rect(x + w * 0.04, fy, w * 0.14, h * 0.2, "#ddd", INK, 0.5))
             s.append(rect(x + w * 0.82, fy, w * 0.14, h * 0.2, "#ddd", INK, 0.5))
             s.append(text(X(x + w / 2), Y(y + h / 2) + 2, "IWC", 5, MUTED))
+        elif kind == "bed":
+            # headboard on the `head` side (-y, +y, -x, +x), two pillows, folded sheet
+            head = f.get("head", "-y")
+            along_y = head in ("-y", "+y")
+            width, length = (w, h) if along_y else (h, w)
+
+            def R(u, v, du, dv):  # local (u across, v from head) -> plan rect
+                if head == "-y": return (x + u, y + v, du, dv)
+                if head == "+y": return (x + u, y + h - v - dv, du, dv)
+                if head == "-x": return (x + v, y + u, dv, du)
+                return (x + w - v - dv, y + u, dv, du)
+            s.append(rect(x, y, w, h, "#fbf8f2", INK, 0.8))
+            s.append(rect(*R(0, 0, width, 0.25), "#d9cdb4", INK, 0.6))
+            pw = (width - 0.6) / 2
+            for u in (0.2, 0.4 + pw):
+                s.append(rect(*R(u, 0.4, pw, 1.1), "#fff", INK, 0.5, 'rx="4"'))
+            s.append(rect(*R(0, 2.0, width, length - 2.0), "#efe8da", INK, 0.5))
+            fx, fy, fw, fh = R(0, 2.0, width, 0.6)
+            s.append(line(X(fx), Y(fy), X(fx + fw), Y(fy + fh), INK, 0.4))
+        elif kind == "wardrobe":
+            s.append(rect(x, y, w, h, "#e6dccb", INK, 0.8))
+            # shutter line on the room-side face (the side away from `back`)
+            back = f.get("back", "+y")
+            if back == "+y": s.append(line(X(x), Y(y + 0.15), X(x + w), Y(y + 0.15), INK, 0.5))
+            elif back == "-y": s.append(line(X(x), Y(y + h - 0.15), X(x + w), Y(y + h - 0.15), INK, 0.5))
+            elif back == "+x": s.append(line(X(x + 0.15), Y(y), X(x + 0.15), Y(y + h), INK, 0.5))
+            else: s.append(line(X(x + w - 0.15), Y(y), X(x + w - 0.15), Y(y + h), INK, 0.5))
         if f.get("label"):
-            rot = -90 if h > w else None
+            rot = -90 if h > w and kind not in ("bed", "wardrobe") else None
             ly = f.get("label_y", y + h / 2)
             s.append(text(X(x + w / 2) + (2 if rot else 0), Y(ly) + (0 if rot else 2.5), f["label"], 6, MUTED, rot=rot))
 

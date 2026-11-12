@@ -31,7 +31,7 @@ The viewer opens on the ground floor. The **First Floor** switch in the top-righ
 - Doors with swing, windows and ventilators, each tagged with a code (D1, W1, V1, O1)
 - Dimension chains on all four sides, room by room, including every 9" wall
 - Plot gap chains (front, rear, left, right), calculated from the building outline
-- Kitchen platform, sink, Indian and western WC, basin, floor traps (a staircase can be drawn with `stairs`)
+- Bed and wardrobe, kitchen platform, sink, Indian and western WC, basin, floor traps (a staircase can be drawn with `stairs`)
 - Area statement, room schedule, door/window schedule with counts, notes and legend
 
 ## Coordinates
@@ -157,6 +157,8 @@ One entry per opening code. The sheet counts how many openings use each code and
 | `wc` | Western WC (EWC). `x, y, w, h`, `facing` = direction the bowl points (`-y`, `+y`, `-x`, `+x`); the cistern sits on the opposite side |
 | `indian_wc` | Indian pan (IWC). `x, y, w, h`, `facing`: `-y` (footrests toward the front) or `+y` |
 | `trap` | `x, y` (floor trap); `"label": false` hides the FT text |
+| `bed` | `x, y, w, h`, `head` = side of the headboard (`-y`, `+y`, `-x`, `+x`); drawn with pillows and a folded sheet |
+| `wardrobe` | `x, y, w, h`, `back` = wall side (`+y` default); the shutter line is drawn on the room side |
 
 ### `dimensions`
 
@@ -183,6 +185,9 @@ A list of strings, printed as numbered notes on the sheet.
 - Dog-legged staircase inside Padavi against the north side: 3'-0" flights, 17 risers, arriving on the first-floor gallery.
 - **Store (future phase):** removed from both floors for now. Its full definition (room, door, ventilator, shelves, outline, dimensions, roof) is saved in `plans/ground_floor.json` under `future.store`.
 - The bathroom/toilet block sticks out 1'-0" past the kitchen's back wall. There is no building behind it.
+- Full length Padavi front edge to kitchen back wall is **35'-0"** (Padavi 10'-0" + house 25'-0"); Hall and Bedroom are 14'-6" deep. The bathroom/toilet block is outside this length.
+- Windows are centred on their rooms. D1, D2 and O2 sit flush against the central Hall/Bedroom partition; the first-floor D1 is directly above the ground-floor D1.
+- Bedroom: queen bed 5'-0" × 6'-6", headboard on the front wall, centred (1'-10½" each side); wardrobe 4'-0" × 1'-6" in the rear-right corner, clear of the D2 swing.
 - Plinth +1'-6", floor-to-floor 10'-0" and lintel 7'-0" are **assumed** until the engineer confirms them.
 
 ## First floor decisions

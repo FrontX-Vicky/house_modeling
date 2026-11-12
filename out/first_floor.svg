@@ -223,28 +223,28 @@
 <rect x="427.5" y="686.8" width="42.0" height="84.0" fill="#faf7f0" stroke="#1f2a36" stroke-width="0.8" />
 <polyline points="348.4,707.8 448.5,707.8 448.5,749.8 337.2,749.8" fill="none" stroke="#1f2a36" stroke-width="0.9" marker-end="url(#arr)"/>
 <text x="343.5" y="711.6" font-size="8" fill="#1f2a36" text-anchor="end" font-weight="700">DN</text>
-<rect x="277.0" y="675.4" width="49.0" height="12.2" fill="#fff"/>
-<line x1="277.0" y1="686.8" x2="277.0" y2="676.2" stroke="#1f2a36" stroke-width="1" />
-<line x1="326.0" y1="686.8" x2="326.0" y2="676.2" stroke="#1f2a36" stroke-width="1" />
-<line x1="277.0" y1="676.2" x2="277.0" y2="627.2" stroke="#8a5a2b" stroke-width="1.6" />
-<path d="M277.0,627.2 A49.0,49.0 0 0,1 326.0,676.2" fill="none" stroke="#8a5a2b" stroke-width="0.7"/>
-<text x="301.5" y="700.2" font-size="7.5" fill="#8a5a2b" text-anchor="middle" font-weight="700">D1</text>
-<rect x="171.2" y="531.0" width="12.2" height="84.0" fill="#fff"/>
-<line x1="172.0" y1="615.0" x2="182.5" y2="615.0" stroke="#1f2a36" stroke-width="1" />
-<line x1="172.0" y1="531.0" x2="182.5" y2="531.0" stroke="#1f2a36" stroke-width="1" />
-<line x1="172.0" y1="615.0" x2="172.0" y2="531.0" stroke="#1f2a36" stroke-width="0.7" />
-<line x1="182.5" y1="615.0" x2="182.5" y2="531.0" stroke="#1f2a36" stroke-width="0.7" />
-<line x1="175.5" y1="615.0" x2="175.5" y2="531.0" stroke="#2a7fd4" stroke-width="1" />
-<line x1="179.0" y1="615.0" x2="179.0" y2="531.0" stroke="#2a7fd4" stroke-width="1" />
-<text x="161.5" y="576.0" font-size="7.5" fill="#2a7fd4" text-anchor="middle" font-weight="700">W1</text>
-<rect x="468.7" y="531.0" width="12.2" height="84.0" fill="#fff"/>
-<line x1="469.5" y1="615.0" x2="480.0" y2="615.0" stroke="#1f2a36" stroke-width="1" />
-<line x1="469.5" y1="531.0" x2="480.0" y2="531.0" stroke="#1f2a36" stroke-width="1" />
-<line x1="469.5" y1="615.0" x2="469.5" y2="531.0" stroke="#1f2a36" stroke-width="0.7" />
-<line x1="480.0" y1="615.0" x2="480.0" y2="531.0" stroke="#1f2a36" stroke-width="0.7" />
-<line x1="473.0" y1="615.0" x2="473.0" y2="531.0" stroke="#2a7fd4" stroke-width="1" />
-<line x1="476.5" y1="615.0" x2="476.5" y2="531.0" stroke="#2a7fd4" stroke-width="1" />
-<text x="459.0" y="576.0" font-size="7.5" fill="#2a7fd4" text-anchor="middle" font-weight="700">W1</text>
+<rect x="287.5" y="675.4" width="49.0" height="12.2" fill="#fff"/>
+<line x1="287.5" y1="686.8" x2="287.5" y2="676.2" stroke="#1f2a36" stroke-width="1" />
+<line x1="336.5" y1="686.8" x2="336.5" y2="676.2" stroke="#1f2a36" stroke-width="1" />
+<line x1="336.5" y1="676.2" x2="336.5" y2="627.2" stroke="#8a5a2b" stroke-width="1.6" />
+<path d="M336.5,627.2 A49.0,49.0 0 0,0 287.5,676.2" fill="none" stroke="#8a5a2b" stroke-width="0.7"/>
+<text x="312.0" y="700.2" font-size="7.5" fill="#8a5a2b" text-anchor="middle" font-weight="700">D1</text>
+<rect x="171.2" y="532.8" width="12.2" height="84.0" fill="#fff"/>
+<line x1="172.0" y1="616.8" x2="182.5" y2="616.8" stroke="#1f2a36" stroke-width="1" />
+<line x1="172.0" y1="532.8" x2="182.5" y2="532.8" stroke="#1f2a36" stroke-width="1" />
+<line x1="172.0" y1="616.8" x2="172.0" y2="532.8" stroke="#1f2a36" stroke-width="0.7" />
+<line x1="182.5" y1="616.8" x2="182.5" y2="532.8" stroke="#1f2a36" stroke-width="0.7" />
+<line x1="175.5" y1="616.8" x2="175.5" y2="532.8" stroke="#2a7fd4" stroke-width="1" />
+<line x1="179.0" y1="616.8" x2="179.0" y2="532.8" stroke="#2a7fd4" stroke-width="1" />
+<text x="161.5" y="577.8" font-size="7.5" fill="#2a7fd4" text-anchor="middle" font-weight="700">W1</text>
+<rect x="468.7" y="532.8" width="12.2" height="84.0" fill="#fff"/>
+<line x1="469.5" y1="616.8" x2="480.0" y2="616.8" stroke="#1f2a36" stroke-width="1" />
+<line x1="469.5" y1="532.8" x2="480.0" y2="532.8" stroke="#1f2a36" stroke-width="1" />
+<line x1="469.5" y1="616.8" x2="469.5" y2="532.8" stroke="#1f2a36" stroke-width="0.7" />
+<line x1="480.0" y1="616.8" x2="480.0" y2="532.8" stroke="#1f2a36" stroke-width="0.7" />
+<line x1="473.0" y1="616.8" x2="473.0" y2="532.8" stroke="#2a7fd4" stroke-width="1" />
+<line x1="476.5" y1="616.8" x2="476.5" y2="532.8" stroke="#2a7fd4" stroke-width="1" />
+<text x="459.0" y="577.8" font-size="7.5" fill="#2a7fd4" text-anchor="middle" font-weight="700">W1</text>
 <rect x="305.0" y="461.9" width="42.0" height="12.2" fill="#fff"/>
 <line x1="305.0" y1="473.2" x2="305.0" y2="462.8" stroke="#1f2a36" stroke-width="1" />
 <line x1="347.0" y1="473.2" x2="347.0" y2="462.8" stroke="#1f2a36" stroke-width="1" />
@@ -253,14 +253,14 @@
 <line x1="305.0" y1="469.8" x2="347.0" y2="469.8" stroke="#2a7fd4" stroke-width="1" />
 <line x1="305.0" y1="466.2" x2="347.0" y2="466.2" stroke="#2a7fd4" stroke-width="1" />
 <text x="326.0" y="486.8" font-size="7.5" fill="#2a7fd4" text-anchor="middle" font-weight="700">W2</text>
-<clipPath id="clip-79792112"><rect x="172.0" y="686.8" width="308.0" height="140.0"/></clipPath>
-<g clip-path="url(#clip-79792112)">
+<clipPath id="clip-49972262"><rect x="172.0" y="686.8" width="308.0" height="140.0"/></clipPath>
+<g clip-path="url(#clip-49972262)">
 <text x="249.0" y="743.9" font-size="13" fill="#222" text-anchor="middle" font-weight="700">GALLERY</text>
 <text x="249.0" y="756.4" font-size="9.5" fill="#555" text-anchor="middle" font-weight="normal">22&#x27;-0&quot; × 10&#x27;-0&quot; (open)</text>
 <text x="249.0" y="767.9" font-size="8.5" fill="#777" text-anchor="middle" font-weight="normal">220 sq ft</text>
 </g>
-<clipPath id="clip-4109662"><rect x="182.5" y="473.2" width="287.0" height="203.0"/></clipPath>
-<g clip-path="url(#clip-4109662)">
+<clipPath id="clip-12725127"><rect x="182.5" y="473.2" width="287.0" height="203.0"/></clipPath>
+<g clip-path="url(#clip-12725127)">
 <text x="326.0" y="572.8" font-size="13" fill="#222" text-anchor="middle" font-weight="700">HALL + BEDROOM</text>
 <text x="326.0" y="585.2" font-size="9.5" fill="#555" text-anchor="middle" font-weight="normal">20&#x27;-6&quot; × 14&#x27;-6&quot;</text>
 <text x="326.0" y="596.8" font-size="8.5" fill="#777" text-anchor="middle" font-weight="normal">297 sq ft</text>

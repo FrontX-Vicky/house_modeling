@@ -43,9 +43,9 @@
   ],
 
   "openings": [
-    { "code": "D1", "type": "door",   "x": 10.5,   "y": 39.75,   "length": 3.5, "orientation": "h", "swing": 1, "hinge": "start", "note": "Hall + Bedroom (from gallery)" },
-    { "code": "W1", "type": "window", "x": 3.375,  "y": 44.5, "length": 6,   "orientation": "v", "tag_side": -1, "note": "South wall" },
-    { "code": "W1", "type": "window", "x": 24.625, "y": 44.5, "length": 6,   "orientation": "v", "tag_side": -1, "note": "North wall" },
+    { "code": "D1", "type": "door",   "x": 11.25,  "y": 39.75,   "length": 3.5, "orientation": "h", "swing": 1, "hinge": "end", "note": "Hall + Bedroom (from gallery)" },
+    { "code": "W1", "type": "window", "x": 3.375,  "y": 44.375, "length": 6,   "orientation": "v", "tag_side": -1, "note": "South wall" },
+    { "code": "W1", "type": "window", "x": 24.625, "y": 44.375, "length": 6,   "orientation": "v", "tag_side": -1, "note": "North wall" },
     { "code": "W2", "type": "window", "x": 12.5,   "y": 55,   "length": 3,   "orientation": "h", "tag_side": -1, "note": "Rear wall (above sheet roof)" }
   ],
 
