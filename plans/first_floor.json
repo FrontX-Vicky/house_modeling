@@ -1,0 +1,36 @@
+{
+  "name": "First Floor",
+  "visible": false,
+  "units": "ft",
+  "plot": { "width": 26, "depth": 82 },
+  "front_side": "east",
+  "setbacks": { "front": 0, "rear": 0, "left": 0, "right": 0 },
+  "wall_thickness": 0.75,
+  "rooms": [],
+  "openings": [],
+
+  "future": {
+    "note": "Not rendered. Decide these while planning the first floor.",
+    "staircase": {
+      "status": "Removed from the ground floor plan for now. Re-decide its position with the first-floor layout.",
+      "last_proposal": "Dog-legged stair inside ground-floor Padavi, along the north (right) wall, starting at the front opening side",
+      "spec": "17 risers ~7\", treads 10\", flights 3'-0\" wide, landing 3'-0\" x 6'-0\", handrail 3'-0\" high",
+      "ground_floor_stairs": [
+        {
+          "flights": [
+            { "x": 14.583, "y": 33.625, "w": 6.667, "h": 3, "treads": 8, "dir": "+x" },
+            { "x": 15.417, "y": 36.625, "w": 5.833, "h": 3, "treads": 7, "dir": "-x" }
+          ],
+          "landings": [ { "x": 21.25, "y": 33.625, "w": 3, "h": 6 } ],
+          "arrow": [[14.8, 35.125], [22.75, 35.125], [22.75, 38.125], [15.6, 38.125]],
+          "label": "UP", "label_at": [14.4, 34.85]
+        }
+      ],
+      "ground_floor_dimensions": [
+        { "axis": "x", "at": 32.9, "pos": [14.583, 21.25, 24.25], "from": 33.625 },
+        { "axis": "y", "at": 13.0, "pos": [30, 33.625, 36.625, 39.625], "from": 14.583 }
+      ],
+      "restore": "To draw it again, copy ground_floor_stairs into ground_floor.json as \"stairs\" and ground_floor_dimensions into its \"dimensions\" list."
+    }
+  }
+}

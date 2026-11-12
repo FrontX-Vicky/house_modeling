@@ -1,0 +1,104 @@
+{
+  "name": "Ground Floor",
+  "subtitle": "East-facing plot  ·  load-bearing 9\" brick  ·  feet-inches  ·  clear inside room sizes",
+  "units": "ft",
+  "plot": { "width": 26, "depth": 82 },
+  "front_side": "east",
+  "setbacks": { "front": 0, "rear": 0, "left": 0, "right": 0 },
+  "wall_thickness": 0.75,
+
+  "building": {
+    "note": "outline = outside face of the enclosed house (L-shape). covered = open Padavi under the RCC slab, no walls, on 6 pillars.",
+    "outline": [[1.5, 39.625], [25, 39.625], [25, 65.75], [16, 65.75], [16, 70.75], [1.5, 70.75]],
+    "covered": [
+      { "name": "Padavi", "x": 1.5, "y": 29.25, "w": 23.5, "h": 10.375 }
+    ]
+  },
+
+  "columns": [
+    { "note": "front, left corner",   "x": 1.5,     "y": 29.25,  "w": 0.75, "h": 0.75 },
+    { "note": "front, 2nd",           "x": 9.0833,  "y": 29.25,  "w": 0.75, "h": 0.75 },
+    { "note": "front, 3rd",           "x": 16.6667, "y": 29.25,  "w": 0.75, "h": 0.75 },
+    { "note": "front, right corner",  "x": 24.25,   "y": 29.25,  "w": 0.75, "h": 0.75 },
+    { "note": "inside, left, against house front wall",  "x": 1.5,   "y": 38.875, "w": 0.75, "h": 0.75 },
+    { "note": "inside, right, against house front wall", "x": 24.25, "y": 38.875, "w": 0.75, "h": 0.75 }
+  ],
+
+  "rooms": [
+    { "name": "Padavi",   "x": 1.5,    "y": 29.25,  "w": 23.5,   "h": 10.375, "color": "#f5e6cc", "stroke_width": 0, "open": true,
+      "dims_text": "23'-6\" × 10'-4½\" open, covered" },
+    { "name": "Hall",     "x": 2.25,   "y": 40.375, "w": 10.625, "h": 14.25,  "color": "#dce8f0" },
+    { "name": "Bedroom",  "x": 13.625, "y": 40.375, "w": 10.625, "h": 14.25,  "color": "#e8dff0" },
+    { "name": "Kitchen",  "points": [[2.25, 55.375], [24.25, 55.375], [24.25, 57.625], [15.25, 57.625], [15.25, 63.625], [2.25, 63.625]],
+      "color": "#f0e8d0", "dims_text": "13'-0\" × 8'-3\" + passage", "area_text": "107.25 + passage 20.25 = 127.5 sq ft",
+      "label_x": 9.6, "label_y": 59.3,
+      "parts": [ { "name": "Passage in front of D3", "w": 9, "h": 2.25, "boundary": [[[15.25, 55.375], [15.25, 57.625]]] } ] },
+    { "name": "Store",    "x": 2.25,   "y": 64.375, "w": 13,     "h": 5.625,  "color": "#e8e4d8", "label_x": 8.75, "label_y": 66.9 },
+    { "name": "Bathroom", "x": 16,     "y": 58.375, "w": 3.875,  "h": 6.625,  "color": "#c8e6f0", "label_x": 17.95, "label_y": 62.3 },
+    { "name": "Toilet",   "x": 20.625, "y": 58.375, "w": 3.625,  "h": 6.625,  "color": "#d0f0e0", "label_x": 21.45, "label_y": 61.6, "show_dims": false, "label_font": [6, 5.5] }
+  ],
+
+  "openings": [
+    { "code": "D1", "type": "door",       "x": 9.0,    "y": 40,     "length": 3.5, "orientation": "h", "swing": 1,  "hinge": "end", "note": "Hall (main)" },
+    { "code": "O2", "type": "opening",    "x": 9.875,  "y": 55,     "length": 3,   "orientation": "h", "tag_side": -1, "note": "Hall to Kitchen" },
+    { "code": "D2", "type": "door",       "x": 13.625, "y": 55,     "length": 2.5, "orientation": "h", "swing": -1, "hinge": "start", "note": "Bedroom" },
+    { "code": "D2", "type": "door",       "x": 7.25,   "y": 64,     "length": 2.5, "orientation": "h", "swing": -1, "hinge": "end",   "note": "Store" },
+    { "code": "D3", "type": "door",       "x": 16.5,   "y": 58,     "length": 2,   "orientation": "h", "swing": 1,  "hinge": "start", "note": "Bathroom" },
+    { "code": "D3", "type": "door",       "x": 21.25,  "y": 58,     "length": 2,   "orientation": "h", "swing": 1,  "hinge": "start", "note": "Toilet" },
+    { "code": "W1", "type": "window",     "x": 1.875,  "y": 44.5,   "length": 6,   "orientation": "v", "tag_side": -1, "note": "Hall" },
+    { "code": "W1", "type": "window",     "x": 24.625, "y": 44.5,   "length": 6,   "orientation": "v", "tag_side": -1, "note": "Bedroom" },
+    { "code": "W2", "type": "window",     "x": 1.875,  "y": 58,     "length": 3,   "orientation": "v", "tag_side": -1, "note": "Kitchen" },
+    { "code": "V1", "type": "ventilator", "x": 17.25,  "y": 65.375, "length": 1.5, "orientation": "h", "tag_side": 1,  "note": "Bathroom" },
+    { "code": "V1", "type": "ventilator", "x": 21.75,  "y": 65.375, "length": 1.5, "orientation": "h", "tag_side": 1,  "note": "Toilet" },
+    { "code": "V2", "type": "ventilator", "x": 7.75,   "y": 70.375, "length": 2,   "orientation": "h", "tag_side": 1,  "note": "Store" }
+  ],
+
+  "fixtures": [
+    { "type": "counter", "points": [[2.25, 55.375], [9.875, 55.375], [9.875, 57.375], [4.25, 57.375], [4.25, 61.5], [2.25, 61.5]],
+      "label": "L-PLATFORM 2'-0\" DEEP", "label_x": 7.0, "label_y": 56.375 },
+    { "type": "sink",    "x": 2.45,  "y": 58.7,  "w": 1.6,   "h": 1.6 },
+    { "type": "shelf",   "x": 2.25,  "y": 68.5,  "w": 13,    "h": 1.5,   "label": "SHELVES 1'-6\" DEEP" },
+    { "type": "basin",   "x": 18.75, "y": 59.4,  "w": 1.125, "h": 1.4 },
+    { "type": "trap",    "x": 18.6,  "y": 64.2 },
+    { "type": "indian_wc", "x": 21.2,  "y": 63.0,  "w": 1.5,  "h": 2.0,  "facing": "-y", "note": "Indian pan on rear wall" },
+    { "type": "wc",        "x": 22.5,  "y": 60.7,  "w": 1.75, "h": 1.7,  "facing": "-x", "note": "Western WC on right wall, wall-hung" },
+    { "type": "trap",      "x": 23.6,  "y": 63.9,  "label": false }
+  ],
+
+  "dimensions": [
+    { "axis": "x", "at": 25.25, "pos": [1.5, 2.25, 9.0833, 9.8333, 16.6667, 17.4167, 24.25, 25], "from": 29.25, "note": "front pillars and clear bays" },
+    { "axis": "y", "at": -4.5,  "pos": [29.25, 30, 38.875, 39.625, 40.375, 54.625, 55.375, 63.625, 64.375, 70, 70.75], "from": 1.5, "note": "left side: pillars, then room by room" },
+    { "axis": "y", "at": -6.5,  "pos": [29.25, 39.625, 70.75], "from": 1.5, "note": "left side overall: Padavi + house" },
+    { "axis": "y", "at": 27.6,  "pos": [29.25, 30, 38.875, 39.625, 40.375, 54.625, 55.375, 57.625, 58.375, 65, 65.75], "from": 25, "note": "right side: pillars, then room by room" },
+    { "axis": "x", "at": 73,    "pos": [1.5, 2.25, 15.25, 16, 19.875, 20.625, 24.25, 25],
+      "from": [70.75, 70.75, 70.75, 70.75, 65.75, 65.75, 65.75, 65.75], "note": "rear: store, bathroom, toilet widths" },
+    { "axis": "x", "at": 75,    "pos": [1.5, 16, 25], "note": "rear overall" },
+    { "axis": "x", "at": 51.5,  "pos": [2.25, 12.875, 13.625, 24.25], "note": "hall / bedroom widths" },
+    { "axis": "x", "at": 55.7, "pos": [15.25, 16.5, 18.5, 21.25, 23.25, 24.25], "from": 57.625, "note": "passage in front of D3: wall / door / wall / door / wall" }
+  ],
+
+  "schedule": [
+    { "code": "D1", "width": 3.5, "height": 7,   "sill": null, "spec": "Main door: teak/sal frame, 35mm panelled shutter, mortice lock" },
+    { "code": "D2", "width": 2.5, "height": 7,   "sill": null, "spec": "Wooden frame, 30mm flush shutter" },
+    { "code": "D3", "width": 2,   "height": 7,   "sill": null, "spec": "WPC/PVC waterproof frame and shutter" },
+    { "code": "W1", "width": 6,   "height": 4,   "sill": 3,    "spec": "Aluminium/UPVC 3-track sliding, 3 shutters with mosquito mesh, MS safety grill" },
+    { "code": "W2", "width": 3,   "height": 3.5, "sill": 3.5,  "spec": "Aluminium/UPVC sliding, MS safety grill" },
+    { "code": "V1", "width": 1.5, "height": 1.5, "sill": 5.5,  "spec": "Louvred glass ventilator, exhaust fan provision" },
+    { "code": "V2", "width": 2,   "height": 1.5, "sill": 5.5,  "spec": "Louvred glass ventilator" },
+    { "code": "O2", "width": 3,   "height": 7,   "sill": null, "spec": "Open passage, no shutter" }
+  ],
+
+  "notes": [
+    "Do not scale the drawing; follow written dimensions. Room sizes are clear inside sizes (wall face to wall face).",
+    "Structure: load-bearing masonry. All external and internal walls 9\" (230 mm) brick in cement mortar 1:6.",
+    "Padavi is open (no walls). Its RCC slab is carried by 6 RCC pillars 9\" x 9\": 4 along the front (6'-10\" clear bays) and 2 at the back corners against the house front wall, with RCC beams along the front and both sides. Pillar, beam and footing sizes to be confirmed by the structural engineer.",
+    "Provide RCC plinth band and RCC lintel band (6\" deep) over all walls; door/window tops at lintel level 7'-0\".",
+    "Assumed levels, confirm with engineer: plinth +1'-6\" above road, floor-to-floor 10'-0\", lintel +7'-0\" above floor.",
+    "Bathroom and toilet: sunken slab 1'-0\", waterproofing 1'-0\" up the walls (3'-0\" in shower), floor 1/2\" below kitchen, sloped to FT.",
+    "Staircase to the first floor is not shown; its position will be fixed with the first-floor plan.",
+    "Kitchen: L-shaped platform 2'-0\" deep at 2'-8\" height, along the hall-side wall from O2 and up the left wall past W2, sink under W2; provide chimney/exhaust opening on the left wall.",
+    "Toilet has two WCs: Indian pan (IWC) on the rear wall and wall-hung western WC (EWC) with concealed cistern on the right wall, giving 1'-10\" clear in front. Provide health faucets for both.",
+    "Passage in front of bathroom/toilet is 2'-3\" clear. Electrical, plumbing and structural drawings to be issued separately.",
+    "Windows W1/W2 face 1'-0\" to 1'-6\" side gaps; confirm neighbour clearance before fixing."
+  ]
+}
