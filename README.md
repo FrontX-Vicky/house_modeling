@@ -195,7 +195,7 @@ A list of strings, printed as numbered notes on the sheet.
 ## First floor decisions
 
 - Same plot coordinates as the ground floor. The enclosed room sits directly over the ground-floor Hall and Bedroom (y 39.375 – 55.375).
-- Hall + Bedroom is one open space, 20'-6" × 14'-6".
+- Hall + Bedroom is one open space, 20'-2" × 14'-4". Front and side walls 11"; the rear wall over the kitchen stays 9" because it sits on the 9" ground-floor wall.
 - Gallery over Padavi: open, MS railing on front and sides, and the 6 pillars continue up to carry its roof (assumed).
 - Kitchen, Bathroom and Toilet stay single storey under a lean-to cement-sheet roof sloping to the rear.
 
