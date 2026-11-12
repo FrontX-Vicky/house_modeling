@@ -110,6 +110,37 @@ def render(plan: dict) -> str:
     rooms = plan.get("rooms", [])
     for r in rooms:
         s.append(poly(shape(r), r.get("color", "#f4efe6"), "#333", r.get("stroke_width", 0.8)))
+    # sheet roofs over single-storey parts: corrugation lines run down the slope
+    for k, rf in enumerate(plan.get("roofs", [])):
+        pts = shape(rf)
+        rx0, ry0, rx1, ry1 = bbox(pts)
+        cid = f"roof-{k}"
+        s.append(f'<clipPath id="{cid}">{poly(pts, "#000")}</clipPath>')
+        s.append(poly(pts, "#e2e1dc"))
+        s.append(f'<g clip-path="url(#{cid})">')
+        step = rf.get("rib_spacing", 0.5)
+        along_y = rf.get("slope", "+y") in ("+y", "-y")
+        n = int(((rx1 - rx0) if along_y else (ry1 - ry0)) / step) + 1
+        for i in range(n):
+            if along_y:
+                xx = rx0 + i * step
+                s.append(line(X(xx), Y(ry0), X(xx), Y(ry1), "#a9a59c", 0.6))
+            else:
+                yy = ry0 + i * step
+                s.append(line(X(rx0), Y(yy), X(rx1), Y(yy), "#a9a59c", 0.6))
+        s.append("</g>")
+        s.append(poly(pts, "none", INK, 1.6))
+        ax, ay = rf.get("arrow_at", [(rx0 + rx1) / 2, (ry0 + ry1) / 2])
+        d = {"+y": (0, 1), "-y": (0, -1), "+x": (1, 0), "-x": (-1, 0)}[rf.get("slope", "+y")]
+        s.append(line(X(ax - d[0] * 2), Y(ay - d[1] * 2), X(ax + d[0] * 2), Y(ay + d[1] * 2), INK, 1.2, 'marker-end="url(#arr)"'))
+        lx, ly = rf.get("label_at", [ax, ay - 2.8])
+        lines = rf.get("label", "").split("\n")
+        w_px = max(len(ln) for ln in lines) * 4.8 + 12
+        s.append(f'<rect x="{X(lx) - w_px / 2:.1f}" y="{Y(ly) - 11:.1f}" width="{w_px:.1f}" height="{11 * len(lines) + 6}" '
+                 f'rx="3" fill="#fff" opacity="0.92"/>')
+        for j, ln in enumerate(lines):
+            s.append(text(X(lx), Y(ly) + j * 11, ln, 8, INK, weight="700" if j == 0 else "normal"))
+
     # open covered areas: dashed line = edge of the slab above
     for c in covered:
         s.append(poly(shape(c), "none", INK, 1, 'stroke-dasharray="7 4"'))
@@ -118,6 +149,10 @@ def render(plan: dict) -> str:
         for part in r.get("parts", []):
             for (ax, ay), (bx, by) in part.get("boundary", []):
                 s.append(line(X(ax), Y(ay), X(bx), Y(by), "#777", 0.8, 'stroke-dasharray="3 3"'))
+    for rl in plan.get("railings", []):
+        p = " ".join(f"{X(a):.1f},{Y(b):.1f}" for a, b in rl["points"])
+        s.append(f'<polyline points="{p}" fill="none" stroke="#3a3a3a" stroke-width="1"/>')
+        s.append(f'<polyline points="{p}" fill="none" stroke="#3a3a3a" stroke-width="4" stroke-dasharray="1 5"/>')
     for col in plan.get("columns", []):
         s.append(rect(col["x"], col["y"], col["w"], col["h"], "#3a3a3a", INK, 0.8))
 
@@ -325,7 +360,7 @@ def render(plan: dict) -> str:
     s.append(text(X(W / 2), Y(0) + 32, f"FRONT (ROAD) · {front}", 12, side_col, weight="600"))
     s.append(text(X(W / 2), Y(D) - 12, f"REAR · {up}", 10, side_col, weight="600"))
     s.append(text(X(-3.2), Y(D - 6), f"{left_dir} SIDE", 10, side_col, weight="600", rot=-90))
-    s.append(text(X(W + 2.8), Y(D - 6), f"{right_dir} SIDE", 10, side_col, weight="600", rot=90))
+    s.append(text(X(W + 1.9), Y(D - 6), f"{right_dir} SIDE", 10, side_col, weight="600", rot=90))
     nx, ny = 40, 50
     rot = (-compass.index(up) * 90) % 360
     s.append(f'<g transform="rotate({rot} {nx} {ny})">'
@@ -373,6 +408,8 @@ def render(plan: dict) -> str:
     if covered:
         stats.append(f"Open covered area under slab ({', '.join(c.get('name', '') for c in covered)}) = {open_area:,.1f} sq ft"
                      f"   ·   Total covered = {built + open_area:,.1f} sq ft")
+    for rf in plan.get("roofs", []):
+        stats.append(f"{rf.get('name', 'Sheet roof')} = {area(shape(rf)):,.1f} sq ft (single storey below)")
     if rooms:
         stats.append(f"Carpet (clear areas of enclosed rooms) = {carpet:,.1f} sq ft")
     if outline and rooms:
@@ -429,7 +466,17 @@ def render(plan: dict) -> str:
     s.append(text(left + 28, ty, 'RCC pillar', 8.5, INK, "start"))
     s.append(line(left + 120, ty - 4, left + 150, ty - 4, INK, 1, 'stroke-dasharray="7 4"'))
     s.append(text(left + 158, ty, "Edge of RCC slab above (open covered area)", 8.5, INK, "start"))
-    ty += 24
+    ty += 18
+    if plan.get("railings") or plan.get("roofs"):
+        s.append(line(left, ty - 4, left + 22, ty - 4, "#3a3a3a", 1))
+        s.append(line(left, ty - 4, left + 22, ty - 4, "#3a3a3a", 4, 'stroke-dasharray="1 5"'))
+        s.append(text(left + 28, ty, "MS railing", 8.5, INK, "start"))
+        s.append(f'<rect x="{left + 120}" y="{ty - 9}" width="30" height="10" fill="#e2e1dc" stroke="{INK}" stroke-width="0.8"/>')
+        for k in range(1, 6):
+            s.append(line(left + 120 + k * 5, ty - 9, left + 120 + k * 5, ty + 1, "#a9a59c", 0.6))
+        s.append(text(left + 158, ty, "Cement roofing sheets (arrow = slope down)", 8.5, INK, "start"))
+        ty += 18
+    ty += 6
 
     sheet_h = ty + 10
     head = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{sheet_w}" height="{sheet_h:.0f}" '
@@ -441,21 +488,48 @@ def render(plan: dict) -> str:
 def main():
     OUT.mkdir(exist_ok=True)
     files = sorted(PLANS.glob("*.json"), key=lambda p: (FLOOR_ORDER.index(p.stem) if p.stem in FLOOR_ORDER else 99, p.stem))
-    cards = []
+    sheets = []
     for path in files:
         plan = json.loads(path.read_text())
         svg = render(plan)
         (OUT / f"{path.stem}.svg").write_text(svg)
         if plan.get("visible", True):
-            cards.append(svg)
+            # ids must be unique once several sheets share one page
+            for key in ("hatch", "arr", "end", "clip-", "roof-"):
+                svg = svg.replace(f'id="{key}', f'id="{path.stem}-{key}').replace(f'url(#{key}', f'url(#{path.stem}-{key}')
+            sheets.append((path.stem, plan["name"], svg))
         print(f"rendered {path.name} -> out/{path.stem}.svg" + ("" if plan.get("visible", True) else " (hidden in viewer)"))
 
+    # Viewer: first sheet is the base; each further floor gets a top-right toggle that swaps it in.
+    base, *others = sheets
+    toggles = "".join(
+        f"<label class='sw'><input type='checkbox' data-floor='{stem}'><span class='track'><span class='knob'></span></span>{escape(name)}</label>"
+        for stem, name, _ in others)
     html = (
         "<!doctype html><meta charset='utf-8'><title>House Floor Plans</title>"
-        "<style>html,body{margin:0;background:#fff}"
-        "main{display:flex;flex-direction:column;align-items:center;gap:24px;padding:12px 0}"
-        "svg{display:block;width:min(100vw,1000px);height:auto}</style>"
-        f"<main>{''.join(cards)}</main>"
+        "<style>html,body{margin:0;background:#fff;font-family:Helvetica,Arial,sans-serif}"
+        "main{display:flex;justify-content:center;padding:12px 0}"
+        ".sheet svg{display:block;width:min(100vw,1000px);height:auto}"
+        ".sheet[hidden]{display:none}"
+        ".bar{position:fixed;top:12px;right:12px;display:flex;flex-direction:column;gap:8px;z-index:10}"
+        ".sw{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #c9d1db;border-radius:20px;"
+        "padding:6px 12px 6px 6px;font-size:13px;font-weight:600;color:#1f2a36;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}"
+        ".sw input{position:absolute;opacity:0;pointer-events:none}"
+        ".track{width:38px;height:22px;border-radius:11px;background:#c9d1db;position:relative;transition:background .15s}"
+        ".knob{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}"
+        ".sw input:checked+.track{background:#2a7fd4}.sw input:checked+.track .knob{left:19px}"
+        ".sw input:focus-visible+.track{outline:2px solid #2a7fd4;outline-offset:2px}</style>"
+        f"<div class='bar'>{toggles}</div><main>"
+        + "".join(f"<div class='sheet' id='sheet-{stem}'{'' if stem == base[0] else ' hidden'}>{svg}</div>" for stem, _, svg in sheets)
+        + "</main><script>"
+        f"const base=document.getElementById('sheet-{base[0]}');"
+        "const boxes=[...document.querySelectorAll('.sw input')];"
+        "function show(){const on=boxes.find(b=>b.checked);"
+        "base.hidden=!!on;boxes.forEach(b=>{document.getElementById('sheet-'+b.dataset.floor).hidden=b!==on;});}"
+        "boxes.forEach(b=>{try{b.checked=localStorage.getItem('floor-'+b.dataset.floor)==='1'}catch(e){}"
+        "b.addEventListener('change',()=>{if(b.checked)boxes.forEach(o=>{if(o!==b)o.checked=false});"
+        "boxes.forEach(o=>{try{localStorage.setItem('floor-'+o.dataset.floor,o.checked?'1':'0')}catch(e){}});show();});});"
+        "show();</script>"
     )
     (OUT / "index.html").write_text(html)
     print("wrote out/index.html")
